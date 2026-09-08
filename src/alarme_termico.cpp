@@ -1,8 +1,11 @@
 #include "alarme_termico.hpp"
 
 void AlarmeTermico::avaliar(double temperatura) {
-    (void)temperatura;
-    // TODO checkpoint 01: aplicar os limites sem perder o estado intermediario.
+    if (temperatura > 45) {
+        ligado_ = true;
+    } else if (temperatura < 40) {
+        ligado_ = false;
+    }
 }
 
 bool AlarmeTermico::estaLigado() const { return ligado_; }
