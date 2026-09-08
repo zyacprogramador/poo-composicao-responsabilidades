@@ -5,9 +5,14 @@ EstacaoMeteorologica::EstacaoMeteorologica(const std::string& tag, double temper
 }
 
 bool EstacaoMeteorologica::registrarTemperatura(double temperatura) {
-    (void)temperatura;
-    // TODO checkpoint 02: atualizar sensor e avaliar alarme somente se aceito.
-    return false;
+    bool aceita = sensor_.atualizar(temperatura);
+
+    if (!aceita) {
+        return false;
+    }
+
+    alarme_.avaliar(temperatura);
+    return true;
 }
 
 double EstacaoMeteorologica::temperatura() const { return sensor_.valor(); }
